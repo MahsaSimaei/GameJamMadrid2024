@@ -14,12 +14,16 @@ public class PersonajeClick : MonoBehaviour
     public string dialogoSinDinero;
     public string dialogoYaInvertido;
     public string dialogoOtraDecision;
+    public string introduccion; // Add this at the beginning of the class
 
     // Referencias desde el Canvas
     public Text dialogoText;          // Campo para el texto del diálogo
     public Button botonSi;           // Botón de inversión "Sí"
     public Button botonNo;           // Botón de inversión "No"
     public TMP_Text moneyText;       // Texto que muestra el dinero actual
+
+    // Imagen del personaje
+    public Image personajeImage;     // Imagen del personaje, asignada desde el Inspector
 
     // Dinero requerido para invertir (editable desde el Inspector)
     public int cantidadInversion;
@@ -29,14 +33,46 @@ public class PersonajeClick : MonoBehaviour
 
     // Variables para el control de decisiones
     private bool yaInvertido = false;
+    private bool introduccionMostrada = false; // Controla si ya se mostró la introducción
+
     public static List<string> inversiones = new List<string>(); // Lista de inversiones realizadas
+                                                                 // Lista estática para manejar imágenes activas globalmente
+    private static List<Image> todasLasImagenes = new List<Image>();
+
+    void Start()
+    {
+        // Agregar la imagen actual a la lista global
+        if (personajeImage != null)
+        {
+            todasLasImagenes.Add(personajeImage);
+            personajeImage.gameObject.SetActive(false); // Ocultar al inicio
+        }
+
+
+        // Vaciar el texto del diálogo
+        if (dialogoText != null)
+        {
+            dialogoText.text = ""; // Texto vacío al inicio
+        }
+
+        // Ocultar botones al inicio
+        if (botonSi != null) botonSi.gameObject.SetActive(false);
+        if (botonNo != null) botonNo.gameObject.SetActive(false);
+    }
 
     void OnMouseDown()
     {
+        if (!introduccionMostrada)
+        {
+            MostrarIntroduccion();
+            introduccionMostrada = true; // Marcar como mostrada
+            return;
+        }
         // Verificar si ya se invirtió en este personaje
         if (yaInvertido)
         {
             dialogoText.text = dialogoYaInvertido;
+            MostrarImagen();
             return;
         }
 
@@ -44,15 +80,19 @@ public class PersonajeClick : MonoBehaviour
         if (InversionAfecta())
         {
             dialogoText.text = dialogoOtraDecision;
+            MostrarImagen();
             return;
         }
 
         // Mostrar el texto del diálogo inicial
         dialogoText.text = dialogoInicial + "\n¿Quieres invertir " + cantidadInversion + " monedas?";
 
+        // Mostrar la imagen del personaje
+        MostrarImagen();
+
         // Activar botones de decisión
-        botonSi.gameObject.SetActive(true);
-        botonNo.gameObject.SetActive(true);
+        if (botonSi != null) botonSi.gameObject.SetActive(true);
+        if (botonNo != null) botonNo.gameObject.SetActive(true);
 
         // Asignar eventos a los botones
         botonSi.onClick.RemoveAllListeners(); // Limpiar listeners previos
@@ -61,6 +101,44 @@ public class PersonajeClick : MonoBehaviour
         botonNo.onClick.RemoveAllListeners();
         botonNo.onClick.AddListener(() => Cancelar());
     }
+    void MostrarIntroduccion()
+    {
+        // Mostrar el texto de introducción
+        if (dialogoText != null)
+        {
+            dialogoText.text = introduccion;
+        }
+
+        // Mostrar la imagen del personaje
+        MostrarImagen();
+    }
+    void MostrarImagen()
+    {
+        // Ocultar todas las demás imágenes antes de mostrar la actual
+        foreach (Image img in todasLasImagenes)
+        {
+            if (img != personajeImage)
+            {
+                img.gameObject.SetActive(false);
+            }
+        }
+
+        // Mostrar la imagen actual
+        if (personajeImage != null)
+        {
+            personajeImage.gameObject.SetActive(true);
+        }
+    }
+
+    void OcultarImagen()
+    {
+        // Ocultar la imagen actual
+        if (personajeImage != null)
+        {
+            personajeImage.gameObject.SetActive(false);
+        }
+    }
+
 
     void Invertir()
     {
@@ -87,16 +165,19 @@ public class PersonajeClick : MonoBehaviour
         }
 
         // Ocultar botones
-        botonSi.gameObject.SetActive(false);
-        botonNo.gameObject.SetActive(false);
+        if (botonSi != null) botonSi.gameObject.SetActive(false);
+        if (botonNo != null) botonNo.gameObject.SetActive(false);
     }
 
     void Cancelar()
     {
         // Cancelar inversión y cerrar botones
         dialogoText.text = "Tal vez en otra ocasión.";
-        botonSi.gameObject.SetActive(false);
-        botonNo.gameObject.SetActive(false);
+        if (botonSi != null) botonSi.gameObject.SetActive(false);
+        if (botonNo != null) botonNo.gameObject.SetActive(false);
+
+        // Ocultar la imagen del personaje
+        OcultarImagen();
     }
 
     bool InversionAfecta()
@@ -207,5 +288,4 @@ public class PersonajeClick : MonoBehaviour
             SceneManager.LoadScene("MadridDarkAcademy"); // Final 3
         }
     }
-
 }

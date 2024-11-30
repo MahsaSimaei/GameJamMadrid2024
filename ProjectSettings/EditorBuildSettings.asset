@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lose.unity
     guid: 28af43fcad5afe5498dcf1d63a704f1b
+  - enabled: 1
+    path: Assets/Scenes/MadridCyberpunk.unity
+    guid: f6c7f7bf32f849746b553d1fa5d9d53f
+  - enabled: 1
+    path: Assets/Scenes/MadridSaludable.unity
+    guid: 765b1d72dde9a924c99d69eb57bb6d46
+  - enabled: 1
+    path: Assets/Scenes/MadridDarkAcademy.unity
+    guid: 321d37fdddb86a44a80bbf79358884d8
   m_configObjects: {}

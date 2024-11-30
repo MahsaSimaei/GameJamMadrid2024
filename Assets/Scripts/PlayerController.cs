@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     public float sprintSpeed = 7.0f; // Sprinting speed
 
     private bool isSprinting = false; // To track if sprinting is active
+    private bool isStopped = false; // To track if the agent is stopped
+
+    private float stopThreshold = 0.1f; // Threshold to consider the agent as stopped
+    private float idleDelay = 0.2f; // Time to wait before switching to idle
+    private float idleTimer = 0f; // Timer for idle state
 
     void Start()
     {
@@ -32,19 +37,25 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 agent.SetDestination(hit.point);
+
+                // Handle marker instantiation
                 if (currentMarker != null)
                 {
                     Destroy(currentMarker);
                 }
                 currentMarker = Instantiate(markerPrefab, hit.point, Quaternion.Euler(90, 0, 0));
+
+                // Enable walking animation
                 animator.SetBool("isWalking", true);
+                isStopped = false;
+                idleTimer = 0f; // Reset idle timer
             }
         }
 
         // Sprint handling when Shift key is held down
         HandleSprinting();
 
-        // Check movement status
+        // Check movement status and stop agent if needed
         CheckMovement();
     }
 
@@ -72,14 +83,33 @@ public class PlayerController : MonoBehaviour
 
     void CheckMovement()
     {
-        // Check if agent is actively moving
-        if (agent.remainingDistance > agent.stoppingDistance || agent.velocity.sqrMagnitude > Mathf.Epsilon)
+        // Check if agent has reached the destination and stopped
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-            animator.SetBool("isWalking", true);
+            if (agent.velocity.magnitude <= stopThreshold)
+            {
+                idleTimer += Time.deltaTime; // Increment idle timer
+                if (idleTimer >= idleDelay && !isStopped)
+                {
+                    isStopped = true;
+                    agent.isStopped = true; // Stop the NavMeshAgent
+                    agent.velocity = Vector3.zero; // Ensure the velocity is zero
+                    animator.SetBool("isWalking", false);
+                    animator.SetBool("isIdle", true); // Trigger idle animation
+                }
+            }
+            else
+            {
+                idleTimer = 0f; // Reset idle timer if agent is moving slightly
+            }
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            isStopped = false; // Agent is moving
+            agent.isStopped = false; // Allow the agent to move
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isIdle", false);
+            idleTimer = 0f; // Reset idle timer
         }
     }
 }

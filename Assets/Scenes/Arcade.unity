@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867f943a2b636e141bb3708e3886de7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 996215516}
+  dialogueManager: {fileID: 0}
   objectsToDisappear:
   - {fileID: 186733838}
   - {fileID: 1409345119}
@@ -2090,7 +2090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b3ed8a221c0179046bd4437c62bfe203, type: 3}
       propertyPath: m_Name
-      value: character-male-a
+      value: Transporte
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2474,7 +2474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f11b5c7b15bb03143ab06e5a8b6c303b, type: 3}
       propertyPath: m_Name
-      value: character-male-d (1)
+      value: Educacion
       objectReference: {fileID: 0}
     - target: {fileID: 6435320000920075851, guid: f11b5c7b15bb03143ab06e5a8b6c303b, type: 3}
       propertyPath: m_AABB.m_Center.x
@@ -2865,12 +2865,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814925eb3457c6048a3a38d96e3a3390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: 3
+  dialogoInicial: 
+  dialogoSinDinero: 
+  dialogoYaInvertido: 
+  dialogoOtraDecision: 
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
   moneyText: {fileID: 1766831922}
-  cantidadInversion: 100
+  cantidadInversion: 8000000
   moneyManager: {fileID: 5530553}
 --- !u!1001 &493391391
 PrefabInstance:
@@ -3477,12 +3480,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814925eb3457c6048a3a38d96e3a3390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: hola
+  dialogoInicial: 
+  dialogoSinDinero: 
+  dialogoYaInvertido: 
+  dialogoOtraDecision: 
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
   moneyText: {fileID: 1766831922}
-  cantidadInversion: 100
+  cantidadInversion: 5000000
   moneyManager: {fileID: 5530553}
 --- !u!1 &677484417
 GameObject:
@@ -3935,7 +3941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f2e87777b658e814baa9163868aaf801, type: 3}
       propertyPath: m_Name
-      value: character-female-b
+      value: Salud
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4211,12 +4217,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814925eb3457c6048a3a38d96e3a3390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: hi
+  dialogoInicial: 
+  dialogoSinDinero: 
+  dialogoYaInvertido: 
+  dialogoOtraDecision: 
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
   moneyText: {fileID: 1766831922}
-  cantidadInversion: 100
+  cantidadInversion: 7000000
   moneyManager: {fileID: 5530553}
 --- !u!1001 &861084691
 PrefabInstance:
@@ -4937,53 +4946,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9207a150fbac84c4eab916a00db286fd, type: 3}
---- !u!1 &996215515
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 996215517}
-  - component: {fileID: 996215516}
-  m_Layer: 0
-  m_Name: Dialogue Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &996215516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996215515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73c6a482e3a29d041800ba26c3bdef90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
-  dialoguePanel: {fileID: 0}
-  skipButton: {fileID: 0}
---- !u!4 &996215517
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 996215515}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1216.0214, y: 523.8949, z: -50.17092}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040873503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5253,7 +5215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dde4c7ba0bd429240a771bfa7d6e4490, type: 3}
       propertyPath: m_Name
-      value: character-male-e (1)
+      value: I+D
       objectReference: {fileID: 0}
     - target: {fileID: 936311780939810553, guid: dde4c7ba0bd429240a771bfa7d6e4490, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5556,7 +5518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3c035ef7f72b85242ad71d21380625ed, type: 3}
       propertyPath: m_Name
-      value: character-male-b (1)
+      value: Cultura
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6602,12 +6564,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814925eb3457c6048a3a38d96e3a3390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: Hola soy 3
+  dialogoInicial: 
+  dialogoSinDinero: 
+  dialogoYaInvertido: 
+  dialogoOtraDecision: 
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
   moneyText: {fileID: 1766831922}
-  cantidadInversion: 100
+  cantidadInversion: 3000000
   moneyManager: {fileID: 5530553}
 --- !u!1001 &1578003278
 PrefabInstance:
@@ -6817,12 +6782,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 814925eb3457c6048a3a38d96e3a3390, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogo: 2
+  dialogoInicial: 
+  dialogoSinDinero: 
+  dialogoYaInvertido: 
+  dialogoOtraDecision: 
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
   moneyText: {fileID: 1766831922}
-  cantidadInversion: 100
+  cantidadInversion: 5000000
   moneyManager: {fileID: 5530553}
 --- !u!1 &1605939979
 GameObject:
@@ -8599,7 +8567,6 @@ SceneRoots:
   - {fileID: 4110732116695371215}
   - {fileID: 471285380}
   - {fileID: 5530552}
-  - {fileID: 996215517}
   - {fileID: 1409345118}
   - {fileID: 383502923}
   - {fileID: 547324156}

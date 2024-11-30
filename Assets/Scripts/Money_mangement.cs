@@ -12,7 +12,7 @@ public class Money_mangement : MonoBehaviour
 
     void Start()
     {
-        money = 1000;  // Valeur initiale d'argent
+        money = 10000000;  // Valeur initiale d'argent
         amount.text = "Money: " + money;
     }
 

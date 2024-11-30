@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // Para cargar escenas
 
 public class PersonajeClick : MonoBehaviour
 {
     // Diálogo del personaje (editable desde el Inspector)
-    public string dialogo;
+    public string dialogoInicial;
+
+    // Diálogos alternativos según las decisiones
+    public string dialogoSinDinero;
+    public string dialogoYaInvertido;
+    public string dialogoOtraDecision;
 
     // Referencias desde el Canvas
     public Text dialogoText;          // Campo para el texto del diálogo
@@ -21,13 +27,28 @@ public class PersonajeClick : MonoBehaviour
     // Referencia al administrador de dinero
     public Money_mangement moneyManager;
 
+    // Variables para el control de decisiones
+    private bool yaInvertido = false;
+    public static List<string> inversiones = new List<string>(); // Lista de inversiones realizadas
+
     void OnMouseDown()
     {
-        // Mostrar el texto del diálogo
-        if (dialogoText != null)
+        // Verificar si ya se invirtió en este personaje
+        if (yaInvertido)
         {
-            dialogoText.text = dialogo + "\n¿Quieres invertir " + cantidadInversion + " monedas?";
+            dialogoText.text = dialogoYaInvertido;
+            return;
         }
+
+        // Verificar si ya se hicieron inversiones que afectan a este personaje
+        if (InversionAfecta())
+        {
+            dialogoText.text = dialogoOtraDecision;
+            return;
+        }
+
+        // Mostrar el texto del diálogo inicial
+        dialogoText.text = dialogoInicial + "\n¿Quieres invertir " + cantidadInversion + " monedas?";
 
         // Activar botones de decisión
         botonSi.gameObject.SetActive(true);
@@ -51,11 +72,18 @@ public class PersonajeClick : MonoBehaviour
 
             // Confirmar la inversión
             dialogoText.text = "¡Gracias por invertir en mi propuesta!";
+            yaInvertido = true; // Marcar como ya invertido
+
+            // Registrar la inversión en la lista
+            inversiones.Add(gameObject.name);
+
+            // Verificar si se cumplen las condiciones para un final
+            VerificarFinal();
         }
         else
         {
             // Mostrar mensaje de error si no hay suficiente dinero
-            dialogoText.text = "No tienes suficiente dinero para invertir.";
+            dialogoText.text = dialogoSinDinero;
         }
 
         // Ocultar botones
@@ -70,4 +98,114 @@ public class PersonajeClick : MonoBehaviour
         botonSi.gameObject.SetActive(false);
         botonNo.gameObject.SetActive(false);
     }
+
+    bool InversionAfecta()
+    {
+        // Caso 1: Si hablas primero con Cultura y aceptas su inversión
+        if (inversiones.Contains("Cultura"))
+        {
+            if (gameObject.name == "Transporte")
+            {
+                dialogoOtraDecision = "¡Me ha tocado! Tengo que ir al concierto de Taylor Swift. Hablamos después.";
+                return true;
+            }
+            if (gameObject.name == "I+D")
+            {
+                dialogoOtraDecision = "Me estoy preparando para un torneo de Madrid in Game… hablamos más tarde.";
+                return true;
+            }
+            if (gameObject.name == "Salud")
+            {
+                dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                return true;
+            }
+        }
+
+        // Caso 2: Si hablas primero con I+D y aceptas su inversión
+        if (inversiones.Contains("I+D"))
+        {
+            if (gameObject.name == "Cultura")
+            {
+                dialogoOtraDecision = "Me enteré que invertiste antes en algo como I+D... ese loco de la tecnología nos va a llevar a la ruina... hablamos en otro momento.";
+                return true;
+            }
+            if (gameObject.name == "Educacion")
+            {
+                dialogoOtraDecision = "No tienes suficiente dinero para invertir.";
+                return true;
+            }
+            if (gameObject.name == "Salud")
+            {
+                dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                return true;
+            }
+        }
+
+        // Caso 3: Si hablas primero con Transporte y aceptas su inversión
+        if (inversiones.Contains("Transporte"))
+        {
+            if (gameObject.name == "Cultura")
+            {
+                dialogoOtraDecision = "Casi me atropellan esos locos con esa nueva especie de trenes... no quiero hablar de dinero, la verdad.";
+                return true;
+            }
+            if (gameObject.name == "Educacion")
+            {
+                dialogoOtraDecision = "El presupuesto no da para más, amigo. Tendremos que buscar otra solución.";
+                return true;
+            }
+            if (gameObject.name == "Salud")
+            {
+                dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                return true;
+            }
+        }
+
+        // Caso 4: Si hablas primero con Educación y aceptas su inversión
+        if (inversiones.Contains("Educacion"))
+        {
+            if (gameObject.name == "I+D")
+            {
+                dialogoOtraDecision = "Me temo que tus finanzas están en rojo. Sin dinero, no podemos avanzar en este proyecto.";
+                return true;
+            }
+            if (gameObject.name == "Transporte")
+            {
+                dialogoOtraDecision = "¡Uf! Parece que el presupuesto se agotó antes de llegar a nosotros. Tendremos que esperar para esto.";
+                return true;
+            }
+            if (gameObject.name == "Salud")
+            {
+                dialogoOtraDecision = "Ding... Mi madre me llama. Parece que hay hamburguesas otra vez.";
+                return true;
+            }
+        }
+
+        // Caso 5: Si hablas primero con Salud y aceptas su inversión
+        if (inversiones.Contains("Salud"))
+        {
+            dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+            return true;
+        }
+
+        // Por defecto, no hay restricciones
+        return false;
+    }
+
+    void VerificarFinal()
+    {
+        if (inversiones.Contains("Salud"))
+        {
+            SceneManager.LoadScene("MadridSaludable"); // Final 1
+        }
+        else if (inversiones.Contains("I+D") && inversiones.Contains("Transporte"))
+        {
+            SceneManager.LoadScene("MadridCyberpunk"); // Final 2
+        }
+        else if (inversiones.Contains("Educacion") && inversiones.Contains("Cultura"))
+        {
+            SceneManager.LoadScene("MadridDarkAcademy"); // Final 3
+        }
+    }
+
 }

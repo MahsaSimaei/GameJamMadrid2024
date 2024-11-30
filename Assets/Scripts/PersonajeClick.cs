@@ -14,7 +14,6 @@ public class PersonajeClick : MonoBehaviour
     public string dialogoSinDinero;
     public string dialogoYaInvertido;
     public string dialogoOtraDecision;
-    public string introduccion; // Add this at the beginning of the class
 
     // Referencias desde el Canvas
     public Text dialogoText;          // Campo para el texto del diálogo
@@ -62,12 +61,7 @@ public class PersonajeClick : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!introduccionMostrada)
-        {
-            MostrarIntroduccion();
-            introduccionMostrada = true; // Marcar como mostrada
-            return;
-        }
+        
         // Verificar si ya se invirtió en este personaje
         if (yaInvertido)
         {
@@ -101,17 +95,8 @@ public class PersonajeClick : MonoBehaviour
         botonNo.onClick.RemoveAllListeners();
         botonNo.onClick.AddListener(() => Cancelar());
     }
-    void MostrarIntroduccion()
-    {
-        // Mostrar el texto de introducción
-        if (dialogoText != null)
-        {
-            dialogoText.text = introduccion;
-        }
+   
 
-        // Mostrar la imagen del personaje
-        MostrarImagen();
-    }
     void MostrarImagen()
     {
         // Ocultar todas las demás imágenes antes de mostrar la actual
@@ -146,7 +131,7 @@ public class PersonajeClick : MonoBehaviour
         {
             // Reducir el dinero y actualizar el texto
             Money_mangement.money -= cantidadInversion;
-            moneyText.text = "Money: " + Money_mangement.money;
+            moneyText.text = " " + Money_mangement.money;
 
             // Confirmar la inversión
             dialogoText.text = "¡Gracias por invertir en mi propuesta!";

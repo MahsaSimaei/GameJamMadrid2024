@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.276695, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.23657754, g: 0.4264151, b: 0.163325, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2876,9 +2876,6 @@ MonoBehaviour:
   dialogoSinDinero: 
   dialogoYaInvertido: 
   dialogoOtraDecision: 
-  introduccion: "Si pudieras poner un poquito de dinero en salud, \xA1ser\xEDa genial!
-    As\xED todos podr\xEDamos jugar y re\xEDr mucho sin enfermarnos. \xA1Porfa, porfa,
-    porfa!"
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
@@ -3498,10 +3495,6 @@ MonoBehaviour:
   dialogoSinDinero: 
   dialogoYaInvertido: 
   dialogoOtraDecision: 
-  introduccion: "Si inviertes en I+D conmigo, podemos crear un robot que haga...
-    \xA1pizzas voladoras! S\xED, voladoras. \xBFPor qu\xE9 no? \xA1Imagina un dron
-    que te lanza tu pepperoni desde el cielo! \xA1Esto es el futuro! Invierte ya,
-    antes de que alguien m\xE1s se lo ocurra."
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
@@ -3633,11 +3626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1e7db9179e798d4dabd2d65cd1e02ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1e7db9179e798d4dabd2d65cd1e02ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.34
+      value: 39.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1e7db9179e798d4dabd2d65cd1e02ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3645,7 +3638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1e7db9179e798d4dabd2d65cd1e02ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 58.81
+      value: 58.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1e7db9179e798d4dabd2d65cd1e02ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4394,11 +4387,6 @@ MonoBehaviour:
   dialogoSinDinero: 
   dialogoYaInvertido: 
   dialogoOtraDecision: 
-  introduccion: " Como dijo V\xEDctor Hugo, \"Abrid escuelas y se cerrar\xE1n c\xE1rceles\".
-    La educaci\xF3n no es solo una inversi\xF3n, es el cimiento de una sociedad m\xE1s
-    justa y pr\xF3spera. Le invito a considerar destinar recursos a este pilar fundamental.
-    Construyamos juntos un ma\xF1ana donde el conocimiento sea el mayor patrimonio
-    de nuestra gente."
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
@@ -5447,7 +5435,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.81999, y: 0.20977047, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1687004947}
   m_Father: {fileID: 5530552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6060,8 +6049,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6168,10 +6157,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 12
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -6197,7 +6186,7 @@ RectTransform:
   m_GameObject: {fileID: 1371252470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.6165, y: 3.6165, z: 3.6165}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5530552}
@@ -6205,7 +6194,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -47, y: -378}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 1300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1391416453
 PrefabInstance:
@@ -6532,7 +6521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.735849, g: 0.35330877, b: 0.3429334, a: 1}
+  m_Color: {r: 0.4943396, g: 0.17668042, b: 0.16695616, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6824,9 +6813,6 @@ MonoBehaviour:
   dialogoSinDinero: 
   dialogoYaInvertido: 
   dialogoOtraDecision: 
-  introduccion: " Mira, cultura es vida. It\u2019s where we connect, donde bailamos,
-    donde cantamos You Belong With Me juntos. Pon tu dinero aqu\xED y hacemos conciertos,
-    talleres, \xA1y tal vez hasta un Taylor tribute night! It\u2019s a win-win, \xBFverdad?"
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
@@ -7048,9 +7034,6 @@ MonoBehaviour:
   dialogoSinDinero: 
   dialogoYaInvertido: 
   dialogoOtraDecision: 
-  introduccion: " El transporte aqu\xED est\xE1... bueno, no est\xE1. Al menos los
-    buses no deber\xEDan ser m\xE1s lentos que mi \xE1nimo... \xBFPodr\xEDas invertir
-    en transporte... \xBFNo?"
   dialogoText: {fileID: 1371252471}
   botonSi: {fileID: 56746904}
   botonNo: {fileID: 1417777592}
@@ -7339,6 +7322,81 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75bcba667596de44396d3291fd2f5518, type: 3}
+--- !u!1 &1687004946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687004947}
+  - component: {fileID: 1687004949}
+  - component: {fileID: 1687004948}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1687004947
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687004946}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.58138514, y: 2.2726266, z: 0.47673}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1122472761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -920, y: 3615}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1687004948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687004946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 43ac98c4ce519a844b1cf3aaa761c631, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1687004949
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687004946}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1703825457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7543,8 +7601,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7714,8 +7772,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -514, y: 396}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -514, y: 355}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1766831922
 MonoBehaviour:
@@ -7800,7 +7858,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -286.43884, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

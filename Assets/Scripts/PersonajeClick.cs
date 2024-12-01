@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement; // Para cargar escenas
-
+using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 public class PersonajeClick : MonoBehaviour
 {
     // Diálogo del personaje (editable desde el Inspector)
     public string dialogoInicial;
-
-    // Diálogos alternativos según las decisiones
     public string dialogoSinDinero;
     public string dialogoYaInvertido;
     public string dialogoOtraDecision;
-    // Nombre del personaje (editable desde el Inspector)
+
+    // Nombre del personaje
     public string nombre;
-    public TMP_Text nameText;        // Campo para el nombre del personaje
+    public TMP_Text nameText;
 
     // Referencias desde el Canvas
-    public TMP_Text dialogoText;          // Campo para el texto del diálogo
-    public Button botonSi;           // Botón de inversión "Sí"
-    public Button botonNo;           // Botón de inversión "No"
-    public TMP_Text moneyText;       // Texto que muestra el dinero actual
+    public TMP_Text dialogoText;
+    public Button botonSi;
+    public Button botonNo;
+    public TMP_Text moneyText;
 
     // Imagen del personaje
-    public Image personajeImage;     // Imagen del personaje, asignada desde el Inspector
+    public Image personajeImage;
 
-    // Dinero requerido para invertir (editable desde el Inspector)
+    // Dinero requerido para invertir
     public int cantidadInversion;
 
     // Referencia al administrador de dinero
@@ -35,34 +34,43 @@ public class PersonajeClick : MonoBehaviour
 
     // Variables para el control de decisiones
     private bool yaInvertido = false;
-    private bool introduccionMostrada = false; // Controla si ya se mostró la introducción
 
-    public static List<string> inversiones = new List<string>(); // Lista de inversiones realizadas
-                                                                 // Lista estática para manejar imágenes activas globalmente
+    public static List<string> inversiones = new List<string>();
     private static List<Image> todasLasImagenes = new List<Image>();
+
+    // Video management
+    public VideoPlayer videoPlayer;           // VideoPlayer component
+    public RawImage videoDisplay;             // Display for the video
+
+    // Dictionary to map characters to their videos
+    public Dictionary<string, VideoClip> characterVideos = new Dictionary<string, VideoClip>();
 
     void Start()
     {
-        // Agregar la imagen actual a la lista global
+        // Add the character image to the global list
         if (personajeImage != null)
         {
             todasLasImagenes.Add(personajeImage);
-            personajeImage.gameObject.SetActive(false); // Ocultar al inicio
+            personajeImage.gameObject.SetActive(false);
         }
 
+        // Clear dialogue and name text
+        if (dialogoText != null) dialogoText.text = "";
+        if (nameText != null) nameText.text = "";
 
-        // Vaciar el texto del diálogo
-        if (dialogoText != null)
-        {
-            dialogoText.text = ""; // Texto vacío al inicio
-        }
-        if (nameText != null)
-        {
-            nameText.text = ""; // Nombre vacío al inicio
-        }
-        // Ocultar botones al inicio
+        // Hide buttons initially
         if (botonSi != null) botonSi.gameObject.SetActive(false);
         if (botonNo != null) botonNo.gameObject.SetActive(false);
+
+        // Hide video display initially
+        if (videoDisplay != null) videoDisplay.gameObject.SetActive(false);
+
+        // Assign videos to characters (example setup)
+        characterVideos.Add("Salud", Resources.Load<VideoClip>("Videos/Salud"));
+        characterVideos.Add("Educacion", Resources.Load<VideoClip>("Videos/Educacion"));
+        characterVideos.Add("Transporte", Resources.Load<VideoClip>("Videos/Transporte"));
+        characterVideos.Add("I+D", Resources.Load<VideoClip>("Videos/ID"));
+        characterVideos.Add("Cultura", Resources.Load<VideoClip>("Videos/Cultura"));
     }
 
     void OnMouseDown()
@@ -106,7 +114,8 @@ public class PersonajeClick : MonoBehaviour
         botonNo.onClick.RemoveAllListeners();
         botonNo.onClick.AddListener(() => Cancelar());
     }
-   
+
+
 
     void MostrarImagen()
     {
@@ -150,6 +159,9 @@ public class PersonajeClick : MonoBehaviour
 
             // Registrar la inversión en la lista
             inversiones.Add(gameObject.name);
+
+            // Play the corresponding video
+            PlayInvestmentVideo(gameObject.name);
 
             // Verificar si se cumplen las condiciones para un final
             VerificarFinal();
@@ -292,6 +304,37 @@ public class PersonajeClick : MonoBehaviour
         return false;
     }
 
+    void PlayInvestmentVideo(string characterName)
+    {
+        if (characterVideos.ContainsKey(characterName))
+        {
+            VideoClip videoClip = characterVideos[characterName];
+
+            if (videoClip != null)
+            {
+                videoPlayer.clip = videoClip;
+                videoDisplay.gameObject.SetActive(true);
+
+                videoPlayer.Play();
+
+                StartCoroutine(HideVideoAfterPlay(videoPlayer.clip.length));
+            }
+            else
+            {
+                Debug.LogError($"Video for character '{characterName}' not found!");
+            }
+        }
+        else
+        {
+            Debug.LogError($"No video mapped for character '{characterName}'!");
+        }
+    }
+
+    IEnumerator HideVideoAfterPlay(double duration)
+    {
+        yield return new WaitForSeconds((float)duration);
+        videoDisplay.gameObject.SetActive(false);
+    }
     void VerificarFinal()
     {
         if (inversiones.Contains("Salud"))

@@ -14,9 +14,12 @@ public class PersonajeClick : MonoBehaviour
     public string dialogoSinDinero;
     public string dialogoYaInvertido;
     public string dialogoOtraDecision;
+    // Nombre del personaje (editable desde el Inspector)
+    public string nombre;
+    public TMP_Text nameText;        // Campo para el nombre del personaje
 
     // Referencias desde el Canvas
-    public Text dialogoText;          // Campo para el texto del diálogo
+    public TMP_Text dialogoText;          // Campo para el texto del diálogo
     public Button botonSi;           // Botón de inversión "Sí"
     public Button botonNo;           // Botón de inversión "No"
     public TMP_Text moneyText;       // Texto que muestra el dinero actual
@@ -53,7 +56,10 @@ public class PersonajeClick : MonoBehaviour
         {
             dialogoText.text = ""; // Texto vacío al inicio
         }
-
+        if (nameText != null)
+        {
+            nameText.text = ""; // Nombre vacío al inicio
+        }
         // Ocultar botones al inicio
         if (botonSi != null) botonSi.gameObject.SetActive(false);
         if (botonNo != null) botonNo.gameObject.SetActive(false);
@@ -77,6 +83,11 @@ public class PersonajeClick : MonoBehaviour
             MostrarImagen();
             return;
         }
+        if (nameText != null)
+        {
+            nameText.text = nombre; // Update the name text with the character's name
+        }
+
 
         // Mostrar el texto del diálogo inicial
         dialogoText.text = dialogoInicial + "\n¿Quieres invertir " + cantidadInversion + " monedas?";
@@ -173,16 +184,22 @@ public class PersonajeClick : MonoBehaviour
             if (gameObject.name == "Transporte")
             {
                 dialogoOtraDecision = "¡Me ha tocado! Tengo que ir al concierto de Taylor Swift. Hablamos después.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "I+D")
             {
                 dialogoOtraDecision = "Me estoy preparando para un torneo de Madrid in Game… hablamos más tarde.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Salud")
             {
                 dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
         }
@@ -193,16 +210,22 @@ public class PersonajeClick : MonoBehaviour
             if (gameObject.name == "Cultura")
             {
                 dialogoOtraDecision = "Me enteré que invertiste antes en algo como I+D... ese loco de la tecnología nos va a llevar a la ruina... hablamos en otro momento.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Educacion")
             {
                 dialogoOtraDecision = "No tienes suficiente dinero para invertir.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Salud")
             {
                 dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
         }
@@ -213,16 +236,22 @@ public class PersonajeClick : MonoBehaviour
             if (gameObject.name == "Cultura")
             {
                 dialogoOtraDecision = "Casi me atropellan esos locos con esa nueva especie de trenes... no quiero hablar de dinero, la verdad.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Educacion")
             {
                 dialogoOtraDecision = "El presupuesto no da para más, amigo. Tendremos que buscar otra solución.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Salud")
             {
                 dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
         }
@@ -233,16 +262,22 @@ public class PersonajeClick : MonoBehaviour
             if (gameObject.name == "I+D")
             {
                 dialogoOtraDecision = "Me temo que tus finanzas están en rojo. Sin dinero, no podemos avanzar en este proyecto.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Transporte")
             {
                 dialogoOtraDecision = "¡Uf! Parece que el presupuesto se agotó antes de llegar a nosotros. Tendremos que esperar para esto.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
             if (gameObject.name == "Salud")
             {
                 dialogoOtraDecision = "Ding... Mi madre me llama. Parece que hay hamburguesas otra vez.";
+                if (botonSi != null) botonSi.gameObject.SetActive(false);
+                if (botonNo != null) botonNo.gameObject.SetActive(false);
                 return true;
             }
         }
@@ -250,7 +285,6 @@ public class PersonajeClick : MonoBehaviour
         // Caso 5: Si hablas primero con Salud y aceptas su inversión
         if (inversiones.Contains("Salud"))
         {
-            dialogoOtraDecision = "Ding me llama mi madre me ha dicho que me ha preparado hamburguesa para comer.";
             return true;
         }
 

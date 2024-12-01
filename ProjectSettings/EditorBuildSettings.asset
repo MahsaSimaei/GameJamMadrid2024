@@ -11,16 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arcade.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/City.unity
     guid: c91337a319e8576499dc3f3d1f0afea3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Past.unity
     guid: 2ed79504866c7994d8e78333d092c6e4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Win.unity
     guid: d485dbc9039638746917137625859e6d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lose.unity
     guid: 28af43fcad5afe5498dcf1d63a704f1b
   - enabled: 1
